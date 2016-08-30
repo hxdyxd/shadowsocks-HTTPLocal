@@ -1,7 +1,7 @@
 ## shadowsocks-HTTPLocal
 http proxy &amp; based on shadowsocks-php-local
 
-# USE
+# Linux
 
 ```sh
 git clone git clone https://github.com/hxdyxd/shadowsocks-HTTPLocal.git
