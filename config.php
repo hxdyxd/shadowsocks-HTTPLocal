@@ -1,0 +1,7 @@
+<?php 
+$SERVER = '127.0.0.1';
+$METHOD = 'aes-256-cfb';
+$PASSWORD = '';
+$PORT = 443;
+$LOCAL_PORT = 8388;
+$PROCESS_COUNT = 12;
