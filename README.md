@@ -1,5 +1,5 @@
 ## shadowsocks-HTTPLocal
-http proxy &amp; based on shadowsocks-php-local
+http proxy &amp; A php port of shadowsocks based on Workerman
 
 # Linux
 
@@ -10,3 +10,8 @@ git clone https://github.com/walkor/Workerman.git
 vim config.php
 php HTTPlocal.php start
 ```
+# More Links
+
+https://github.com/walkor/shadowsocks-php<https://github.com/walkor/shadowsocks-php>
+https://github.com/walkor/Workerman<https://github.com/walkor/Workerman>
+https://github.com/walkor/workerman-for-win<https://github.com/walkor/workerman-for-win>
