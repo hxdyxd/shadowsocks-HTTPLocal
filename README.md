@@ -4,7 +4,7 @@ http proxy &amp; based on shadowsocks-php-local
 # Linux
 
 ```sh
-git clone git clone https://github.com/hxdyxd/shadowsocks-HTTPLocal.git
+git clone https://github.com/hxdyxd/shadowsocks-HTTPLocal.git
 cd shadowsocks-HTTPLocal
 git clone https://github.com/walkor/Workerman.git
 vim config.php
