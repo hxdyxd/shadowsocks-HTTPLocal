@@ -33,7 +33,7 @@ $worker->onConnect = function($connection)use($METHOD, $PASSWORD){
 
 $worker->onMessage = function($connection, $buffer)use($LOCAL_PORT, $SERVER, $PORT){
 	// Parse http header.
-    list($method, $addr, $http_version) = explode(' ', $buffer);
+    list($method, $addr) = explode(' ', $buffer);
     echo $method.' '.$addr."\n";
     $url_data = parse_url($addr);
     $port = isset($url_data['port'])?"{$url_data['port']}":"80";
