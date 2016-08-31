@@ -37,11 +37,12 @@ $worker->onMessage = function($connection, $buffer)use($LOCAL_PORT, $SERVER, $PO
     echo $method.' '.$addr."\n";
     $url_data = parse_url($addr);
     $port = isset($url_data['port'])?"{$url_data['port']}":"80";
+    $url_data['host'] = str_replace('[', '', $url_data['host']);
+    $url_data['host'] = str_replace(']', '', $url_data['host']);
     $addrtype = getTypeByAddress($url_data['host']);
     if($addrtype == ADDRTYPE_IPV4){
-    	$ip = explode('.', $url_data['host']);
     	$socks5_header = chr(ADDRTYPE_IPV4);
-    	$socks5_header .= chr($ip[0]).chr($ip[1]).chr($ip[2]).chr($ip[3]);
+    	$socks5_header .= inet_pton($url_data['host']);
     	$socks5_header .= pack('n', $port);
     }else if($addrtype == ADDRTYPE_HOST){
     	$socks5_header = chr(ADDRTYPE_HOST);
@@ -49,9 +50,9 @@ $worker->onMessage = function($connection, $buffer)use($LOCAL_PORT, $SERVER, $PO
     	$socks5_header .= $url_data['host'];
     	$socks5_header .= pack('n', $port);
     }else{
-    	echo 'to do... unsupport ipv6';
-    	$connection->close();
-        return;
+        $socks5_header = chr(ADDRTYPE_IPV6);
+        $socks5_header .= inet_pton($url_data['host']);
+        $socks5_header .= pack('n', $port);
     }
     $address = "tcp://$SERVER:$PORT";
     $remote_connection = new AsyncTcpConnection($address);
