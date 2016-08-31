@@ -32,25 +32,25 @@ $worker->onConnect = function($connection)use($METHOD, $PASSWORD){
 };
 
 $worker->onMessage = function($connection, $buffer)use($LOCAL_PORT, $SERVER, $PORT){
-	// Parse http header.
+    // Parse http header.
     list($method, $addr) = explode(' ', $buffer);
     echo $method.' '.$addr."\n";
     $url_data = parse_url($addr);
-    $port = isset($url_data['port'])?"{$url_data['port']}":"80";
-    $url_data['host'] = trim($url_data['host'], '[]');  //support ipv6
-    $addrtype = getTypeByAddress($url_data['host']);
+    $host = trim($url_data['host'], '[]'); //support ipv6
+    $port = isset($url_data['port']) ? "{$url_data['port']}" : "80" ;
+    $addrtype = getTypeByAddress($host);
     if($addrtype == ADDRTYPE_IPV4){
     	$socks5_header = chr(ADDRTYPE_IPV4);
-    	$socks5_header .= inet_pton($url_data['host']);
+    	$socks5_header .= inet_pton($host);
     	$socks5_header .= pack('n', $port);
     }else if($addrtype == ADDRTYPE_HOST){
     	$socks5_header = chr(ADDRTYPE_HOST);
-    	$socks5_header .= chr(strlen($url_data['host']));
-    	$socks5_header .= $url_data['host'];
+    	$socks5_header .= chr(strlen($host));
+    	$socks5_header .= $host;
     	$socks5_header .= pack('n', $port);
     }else{
         $socks5_header = chr(ADDRTYPE_IPV6);
-        $socks5_header .= inet_pton($url_data['host']);
+        $socks5_header .= inet_pton($host);
         $socks5_header .= pack('n', $port);
     }
     $address = "tcp://$SERVER:$PORT";
