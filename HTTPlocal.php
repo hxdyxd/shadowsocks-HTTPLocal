@@ -37,8 +37,7 @@ $worker->onMessage = function($connection, $buffer)use($LOCAL_PORT, $SERVER, $PO
     echo $method.' '.$addr."\n";
     $url_data = parse_url($addr);
     $port = isset($url_data['port'])?"{$url_data['port']}":"80";
-    $url_data['host'] = str_replace('[', '', $url_data['host']);
-    $url_data['host'] = str_replace(']', '', $url_data['host']);
+    $url_data['host'] = trim($url_data['host'], '[]');  //support ipv6
     $addrtype = getTypeByAddress($url_data['host']);
     if($addrtype == ADDRTYPE_IPV4){
     	$socks5_header = chr(ADDRTYPE_IPV4);
