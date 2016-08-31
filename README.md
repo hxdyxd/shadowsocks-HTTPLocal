@@ -1,7 +1,7 @@
 ## shadowsocks-HTTPLocal
 A HTTP proxy version of shadowsocks based on [Workerman](https://github.com/walkor/Workerman)
 
-HTTP代理版本的shadowsocks-php客户端，使用[Workerman](https://github.com/walkor/Workerman)
+HTTP代理版本的shadowsocks-php客户端，使用[Workerman](https://github.com/walkor/Workerman)框架
 
 ### Linux
 
